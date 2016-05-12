@@ -1,7 +1,7 @@
 ! vi:syntax=xdefaults
 
-#define cjb_bg       #2f343b
-#define cjb_fg       #cccccc
+#define cjb_bg       #263238
+#define cjb_fg       #eceff1
 #define cjb_black    cjb_bg
 #define cjb_grey     #3f3f3f
 #define cjb_red      #d17b49
@@ -11,12 +11,12 @@
 #define cjb_magenta  #775759
 #define cjb_cyan     #6d715e
 #define cjb_white    cjb_fg
-#define cjb_font     Inconsolata
+#define cjb_font     Cousine \for\ Powerline 
 #define cjb_fontsize 7
 
-#include </home/cjbarrac/.xres/rofi>
-#include </home/cjbarrac/.xres/urxvt>
-#include </home/cjbarrac/.xres/xft>
+#include </home/christof/.xres/rofi>
+#include </home/christof/.xres/urxvt>
+#include </home/christof/.xres/xft>
 
 Xcursor.size: 16
 

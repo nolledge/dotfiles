@@ -1,5 +1,6 @@
 # Dotfiles
-These are the dotfiles for my laptop
+These are the dotfiles for my desktop PC.
+Originally taken from https://github.com/cbarox/Dotfiles
 
 Installation Instructions
 =========================
@@ -18,24 +19,3 @@ Folder Info
 |**xres**| contains my .Xresources files which configure colours and settings for urxvt, xft, and rofi|
 |**zsh**| contains my zsh config and aliases|
 
-Screenshots
-===========
-Clean
------
-![clean](https://raw.githubusercontent.com/CarloBarraco/Dotfiles/master/scrots/clean.png)
-
-Music
------
-![music](https://raw.githubusercontent.com/CarloBarraco/Dotfiles/master/scrots/music.png)
-
-Firefox
---------
-![firefox](https://raw.githubusercontent.com/CarloBarraco/Dotfiles/master/scrots/firefox.png)
-
-Coding
-------
-![coding](https://raw.githubusercontent.com/CarloBarraco/Dotfiles/master/scrots/coding.png)
-
-Colors
-----------------------
-![colors](https://raw.githubusercontent.com/CarloBarraco/Dotfiles/master/scrots/colors.png)
