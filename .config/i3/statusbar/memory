@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# If free memory is lower than a cutoff, show it in the status bar.
+used=`free -h | sed -n '2p' | awk -F' ' '{print $3}'`
+total=`free -h | sed -n '2p' | awk -F' ' '{print $2}'`
+
+        MEMORY=`echo $MEMORY "/ 10" | bc -l |  awk '{printf "%.1f\n", $0}'`
+        echo "-RAM:" $used"/""$total"
+        if [[ $BLOCK_BUTTON == '1' ]]; then
+                urxvt -title "float" -geometry 80x20 -hold -e htop
+        fi
+
+

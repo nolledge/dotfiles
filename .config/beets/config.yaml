@@ -1,0 +1,11 @@
+directory: /home/christof/libs/music_sorted
+import:
+    copy: yes
+    write: yes
+    move: no
+    link: no
+    resume: ask
+    incremental: yes
+    quiet_fallback: skip
+threaded: yes
+# plugins: discogs duplicates echonest fetchart fromfilename ftintitle importfeeds info lastgenre web

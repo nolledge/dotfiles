@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/christof/.cmus'
+let g:netrw_dirhist_2='/home/christof'
+let g:netrw_dirhist_3='/home/christof/.xres'
+let g:netrw_dirhist_4='/home/christof/config'
+let g:netrw_dirhist_5='/home/christof/.config/i3'
+let g:netrw_dirhist_6='/home/christof/.config'
+let g:netrw_dirhist_7='/home/christof/.cmus'
+let g:netrw_dirhist_8='/home/christof/libs/Downloads/MaterialDesign-Webfont-master'

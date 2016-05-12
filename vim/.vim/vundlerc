@@ -1,0 +1,30 @@
+" vi:syntax=vim
+
+" turn this off for Vundle
+filetype off
+" set the runtime path to include Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+" init Vundle
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'kien/ctrlp.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/Gundo'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'ervandew/supertab'
+call vundle#end()
+" enable filetype plugins, put after Vundle
+filetype indent on
+filetype plugin on
