@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 
 # Error fixing
+alias ..='cd ..'
 alias vi='vim'
 alias vmi='vim'
 alias sl='ls'
@@ -10,8 +11,6 @@ alias alsamixer="alsamixer -g"
 alias cp='cp -rv'
 alias beet='beet -v -d /home/christof/libs/music_sorted'
 alias grep='grep --color=auto'
-alias nyaa='nyaa --sort=leech --output-path=/home/cjbarrac/Downloads/nyaa HorribleSubs 720'
-alias pacaur='pacaur --color always --noedit'
 alias rename='rename -v'
 alias rm='rm -v'
 alias stow='stow --verbose=2'
@@ -42,6 +41,7 @@ alias sstart='sudo systemctl start $@'
 alias sstatus='sudo systemctl status $@'
 
 # locations
+alias c='clear'
 alias h='cd ~'
 alias w='cd ~/workspace'
 alias nas='cd ~/archive'
@@ -74,3 +74,4 @@ updatehosts() {
 }
 alias vimgo='vim -u ~/.vimrc.go'
 alias vimphp='vim -u ~/.vim.php/vimrc'
+alias pacman='sudo pacman'

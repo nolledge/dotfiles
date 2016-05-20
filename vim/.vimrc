@@ -4,6 +4,7 @@ source ~/.vim/statuslinerc
 source ~/.vim/vundlerc
 
 """ Editing
+let mapleader=","
 set background=dark
 colorscheme ron
 " highlight LineNr ctermfg=blue
@@ -66,6 +67,26 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+""" Scala Format
+map <Leader>r  :%!java -jar /home/christof/bin/cli-assembly-0.2.0-SNAPSHOT.jar -f -q +compactControlReadability +alignParameters +alignSingleLineCaseStatements +doubleIndentClassDeclaration +preserveDanglingCloseParenthesis +rewriteArrowSymbols +preserveSpaceBeforeArguments --stdin --stdout <CR> 
+"" Tagbar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'scala',
+    \ 'sro'       : '.',
+    \ 'kinds'     : [
+      \ 'p:packages',
+      \ 'T:types:1',
+      \ 't:traits',
+      \ 'o:objects',
+      \ 'O:case objects',
+      \ 'c:classes',
+      \ 'C:case classes',
+      \ 'm:methods',
+      \ 'V:values:1',
+      \ 'v:variables:1'
+    \ ]
+    \ }
 """ Airline
 let g:airline_theme='base16_solarized'
 let g:airline_powerline_fonts = 1

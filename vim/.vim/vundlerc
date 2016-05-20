@@ -24,6 +24,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'ervandew/supertab'
+Plugin 'majutsushi/tagbar'
 call vundle#end()
 " enable filetype plugins, put after Vundle
 filetype indent on

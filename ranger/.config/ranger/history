@@ -5,4 +5,8 @@ search keepass
 ?
 help
 open_with 
+search This is
+search england
+search tour
 
+delete
