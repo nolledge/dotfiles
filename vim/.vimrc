@@ -47,6 +47,7 @@ silent! map <F3> :NERDTreeFind<CR>
 let g:NERDTreeToggle="<F2>"
 let g:NERDTreeMapActivateNode="<F3>"
 let g:NERDTreeMapPreview="<F4>"
+let NERDTreeShowHidden=1
 map <C-p>     :CtrlP<CR>
 nnoremap <F5> :GundoToggle<CR>
 vmap <Enter>  <Plug>(EasyAlign)

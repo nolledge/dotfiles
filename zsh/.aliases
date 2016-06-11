@@ -20,7 +20,7 @@ alias bigfiles='find . -size +250M -exec ls --size -h {} \+ | sort -rh'
 alias bro='apropos'
 alias cpu_usage="top -d 0.5 -b -n 2 | grep Cpu | tail -n 1 | cut -c 1-24 | awk '{print \$3}'"
 alias fdu="du -ahd 1 | sort -hr"
-alias l='ls --human-readable --group-directories-first --size --color $@'
+alias l='ls -lah --group-directories-first --size --color $@'
 alias marvin='sshfs -o IdentityFile=/home/cjbarrac/.ssh/id_rsa -p 4242 download@192.168.0.11:/home/ /home/cjbarrac/Web/sshfs/marvin'
 alias powersave='sudo powerdown;sudo powertop --auto-tune'
 alias saltybet='mpv http://www.twitch.tv/saltybet'
@@ -44,7 +44,11 @@ alias sstatus='sudo systemctl status $@'
 alias c='clear'
 alias h='cd ~'
 alias w='cd ~/workspace'
+alias dl='cd ~/libs/Downloads'
 alias nas='cd ~/archive'
+
+# laravel
+alias lara='php artisan'
 
 # My functions
 branch446() {

@@ -1,7 +1,0 @@
-3
-
-https://www.theguardian.com/technology/blog/2006/oct/13/dumpfirefoxsw
-https://www.theguardian.com/
-https://www.theguardian.com/service-worker.js
-{418f5ba8-540b-488a-b16d-d0edc01262d6}
-#

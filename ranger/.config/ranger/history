@@ -1,6 +1,5 @@
 search alter
 open_with cmus
-open_with vlc
 search keepass
 ?
 help
@@ -8,5 +7,9 @@ open_with
 search This is
 search england
 search tour
-
+open_with vlc
 delete
+open_with chromium
+
+open_with vim
+shell make
