@@ -76,6 +76,13 @@ updatehosts() {
     sudo rm /etc/hosts
     sudo mv hosts.txt /etc/hosts
 }
+flactomp3() {
+    for a in ./*.flac; do
+          ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"
+      done
+}
 alias vimgo='vim -u ~/.vimrc.go'
 alias vimphp='vim -u ~/.vim.php/vimrc'
 alias pacman='sudo pacman'
+alias weather='curl wttr.in/Hamburg'
+alias cal="~/.khal_fix"

@@ -6,57 +6,41 @@
 ! Compile xft: Turn on/off double-buffering for xft (default enabled).
 URxvt*buffered: true
 
-! Create the window with the specified X window geometry [default
-! URxvt*geometry: geom
+*.foreground:   cjb_fg
+*.background:   cjb_bg
+*.cursorColor:  #eceff1
 
-! Use the specified colour as the windows background colour
-URxvt*background: cjb_bg
+! black
+*.color0:       #263238
+*.color8:       #37474f
 
-! Use the specified colour as the windows foreground colour
-URxvt*foreground: cjb_fg
+! red
+*.color1:       #ff9800
+*.color9:       #ffa74d
 
-! Use these colours
-*color0: cjb_black
-*color1: cjb_red
-*color2: cjb_green
-*color3: cjb_yellow
-*color4: cjb_blue
-*color5: cjb_magenta
-*color6: cjb_cyan
-*color7: cjb_white
-*color8: cjb_grey
-*color9: cjb_red
-*color10: cjb_green
-*color11: cjb_yellow
-*color12: cjb_blue
-*color13: cjb_magenta
-*color14: cjb_cyan
-*color15: cjb_white
+! green
+*.color2:       #8bc34a
+*.color10:      #9ccc65
 
-! Use the specified colour for bold characters when the text is the default foreground colour
-URxvt*colorBD: cjb_blue
+! yellow
+*.color3:       #ffc107
+*.color11:      #ffa000
 
-! Use the specified colour for italic characters when the text is the default foreground colour
-URxvt*colorIT: cjb_blue
+! blue
+*.color4:       #03a9f4
+*.color12:      #81d4fa
 
-! Use the specified colour for underlined characters when the
-URxvt*colorUL: cjb_blue
+! magenta
+*.color5:       #e91e63
+*.color13:      #ad1457
 
-! If set, use the specified colour as the colour for the underline
-! URxvt*underlineColor: colour
+! cyan
+*.color6:       #009688
+*.color14:      #26a69a
 
-! If set, use the specified colour as the background for highlighted
-URxvt*highlightColor: cjb_fg
-
-! If set and highlightColor is set, use the specified colour as the
-URxvt*highlightTextColor: cjb_bg
-
-! Use the specified colour for the cursor. The default is to use the
-URxvt*cursorColor: cjb_fg
-
-! Use the specified colour for the colour of the cursor text. For this
-URxvt*cursorColor2: cjb_bg
-
+! white
+*.color7:       #cfd8dc
+*.color15:      #eceff1rue
 ! True: simulate reverse video by foreground and background colours;
 URxvt*reverseVideo: false
 
@@ -82,7 +66,8 @@ URxvt*reverseVideo: false
 ! URxvt*troughColor: colour
 
 ! The colour of the border around the text area and between the
-URxvt*borderColor: cjb_bg
+URxvt*borderColor:  #263238
+
 
 ! Select the fonts to be used. This is a comma separated list of font
 URxvt*font: xft:cjb_font:medium:size=cjb_fontsize
@@ -282,4 +267,9 @@ URxvt*url-launcher: firefox
 URxvt*letterSpace: 0
 
 ! Specifies whether to use native transparency
-URxvt*transparent: false
+!URxvt*transparent: false
+!URxvt.perl-ext-common: default,matcher,clipboard
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.copyCommand:  xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard

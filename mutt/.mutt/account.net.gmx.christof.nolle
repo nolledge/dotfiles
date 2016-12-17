@@ -1,0 +1,15 @@
+set imap_user = "christof.nolle@gmx.net"                       
+set imap_pass = `gpg -dq ~/.mutt/.pass.gpg | awk '/GMX:/ {print $2}'` 
+set smtp_url = "smtp://christof.nolle@gmx.net@mail.gmx.com:587/"    
+set smtp_pass = `gpg -dq ~/.mutt/.pass.gpg | awk '/GMX:/ {print $2}'` 
+set smtp_url = "smtp://christof.nolle@gmx.net@mail.gmx.com:587/"    
+set from = "christof.nolle@gmx.net"
+set use_from=yes                                                      
+set realname = "Christof Nolle"                                  
+set folder = "imaps://imap.gmx.com:993"                     
+set spoolfile = "+INBOX"                                      
+set postponed = "+Drafts"  
+set record = "+Gesendet"
+set ssl_starttls = yes
+# set ssl_force_tls = yes 
+

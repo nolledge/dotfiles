@@ -1,6 +1,7 @@
 #!/bin/bash
-folders=("zsh" "conky" "firefox" "i3" "ranger" "vim" "xres" "mpv" "cmus")
-for f in "${folders[@]}"
+echo "Linking files with stow";
+for f in $(find . -maxdepth 1 -mindepth 1 -type d -not -path './.git' -printf "%f\n")
 do
+	echo "installing package $f";
 	stow --verbose=2 -R --override=".*" -t /home/christof/ $f
 done

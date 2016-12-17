@@ -3,13 +3,42 @@ open_with cmus
 search keepass
 ?
 help
-open_with 
 search This is
 search england
 search tour
-open_with vlc
-delete
-open_with chromium
-
-open_with vim
 shell make
+open_with chromium
+rename hochkant_farbe.jpg
+rename quer_farbe.jpg
+rename quer_sw.jpg
+rename hochkant_sw.jpg
+s
+open_with vim
+shell pdflatex lebenslauf.tex
+w
+unzip B
+unzip
+!unzip Bachelorarbei
+!
+shell unzip Bachelorarbeit\ Final.zip_
+search kuckucksnest
+open_with firefox
+! vlc *.mp4
+vlc *.mp4
+shell vlc *.mp4
+search flower
+search broken
+search ghost
+shell du
+shell
+shell rm *.zip
+
+shell *.rar
+delete
+shell rm *.rar
+search still
+open_with vlc
+search harry
+open_with llllh
+search mission
+open_with 

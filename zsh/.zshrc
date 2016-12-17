@@ -27,3 +27,4 @@ fi
 export TERM=xterm
 
 source ~/.aliases
+source ~/.env

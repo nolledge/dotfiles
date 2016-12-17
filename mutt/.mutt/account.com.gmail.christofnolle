@@ -1,0 +1,18 @@
+set from = "christofnolle@googlemail.com"
+set realname = "Christof Nolle"
+set imap_user = "christofnolle@googlemail.com"
+set imap_pass = `gpg -dq ~/.mutt/.pass.gpg | awk '/GMail:/ {print $2}'`
+set folder = imaps://imap.gmail.com
+set spoolfile = "+INBOX"
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+set header_cache = ~/.mutt/com.gmail.christofnolle/cache/headers            
+set message_cachedir = ~/.mutt/com.gmail.christofnolle/cache/bodies         
+set certificate_file = ~/.mutt/com.gmail.christofnolle/certificates
+set smtp_url = smtp://christofnolle@googlemail.com@smtp.gmail.com:587/
+set smtp_pass = `gpg -dq ~/.mutt/.pass.gpg | awk '/GMail:/ {print $2}'`
+set imap_keepalive = 900
+set move = no
+#set ssl_starttls = yes
+#set ssl_force_tls = yes
+

@@ -1,0 +1,119 @@
+directory: /home/christof/libs/music_sorted
+
+threaded: yes
+art_filename: cover                                                                                                                   
+original_date: yes                                                                                                                    
+per_disc_numbering: yes
+
+format_item: $artist - $original_year - $album - $title 
+sort_item: artist+ original_year+ album+ disc+ track+ 
+format_album: $albumartist - $original_year - $album 
+
+sort_album: albumartist+ original_year+ album+
+
+plugins: acousticbrainz badfiles chroma convert discogs duplicates edit embedart fetchart fromfilename ftintitle fuzzy importadded info inline missing play random rewrite the
+ui:
+    color: yes
+
+import:
+    move: yes
+    incremental: yes
+    detail: yes
+    timid: yes
+    resume: ask
+    log: /tmp/beets_import.log
+    write: yes
+
+replace:
+    '[\\/]': _
+    '^\.': _
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': _
+    #'\.$': _
+    '\s+$': ''
+    ' ': _
+    '\!': ''
+
+paths:
+    default: %lower{%the{$artist}/$original_year-$album%if{$albumdisambig,_[$albumdisambig]}/$disc-$track-$title}
+    singleton: %lower{singletons/%the{$artist}-$title}
+    comp: %lower{various_artists/%if{$original_year,$original_year,$year}-$album%if{$albumdisambig,_[$albumdisambig]}/$disc-$track-%the{$artist}-$title}
+
+match:
+    preferred:
+        media: ['Hybrid SACD', 'SACD', 'CD', 'Digital Media|File']
+
+#config for the inline plugin
+album_fields:
+  album_length: |
+    total = 0
+    for item in items:
+        total += item.length
+        return total
+
+fetchart:
+    auto: true
+    google_search: false 
+    cautious: false
+    cover_names: cover front back art album folder
+    minwidth: 1500
+    sources: filesystem coverart itunes amazon albumart 
+
+embedart:
+    maxwidth: 1000
+
+acousticbrainz:
+    auto: yes
+
+#copyartifacts:
+#    extensions: *.
+#    print_ignored: yes
+
+
+convert:
+     format: flac
+     pretend: no
+     quiet: no
+     formats:
+       #flac: ffmpeg -i $source -y -vn -acodec flac -compression_level 12 $dest
+       extension: flac
+       #below taken from http://tuxtweaks.com/2011/12/batch-converting-audio-with-gstreamer/
+       flac: gst-launch-1.0 filesrc location="$source" ! decodebin ! audioconvert ! flacenc quality=8 ! flactag ! filesink location="$dest" 
+       embed: yes
+       copy_album_art: yes 
+       dest: ~/tmp
+
+fuzzy:
+    threshold: 0.7
+
+duplicates:
+    format: $albumartist - $album - $title
+    count: yes
+    album: no
+    full: no
+
+missing:
+    format: $albumartist - $album - $title
+    count: yes
+    total: yes
+
+mpd:
+    rating: no
+
+ftintitle:
+    format: (feat. {0})
+
+echonest:
+    apikey: 0WIRGAGR6HEDIRCRD
+    auto: yes
+    upload: yes
+    convert: yes
+    trunicate: yes
+
+
+play:
+#    command: tyq
+    #relative_to: /home/hometheater/audio
+    command: bash -c 'cat $0 | mpc add'
+    use_folders: yes
+#    raw: yes

@@ -1,0 +1,14 @@
+set imap_user = "wp12449618-christof"                       
+set imap_pass = `gpg -dq ~/.mutt/.pass.gpg | awk '/cnolle:/ {print $2}'`
+set smtp_url = "smtp://wp12449618-christof@wp215.webpack.hosteurope.de:587/"    
+set smtp_pass = `gpg -dq ~/.mutt/.pass.gpg | awk '/cnolle:/ {print $2}'`
+set from = "mail@christof-nolle.de"
+set use_from=yes                                                      
+set realname = "Christof Nolle"                                  
+set folder = "imaps://wp215.webpack.hosteurope.de:993"                     
+set spoolfile = "+INBOX"                                      
+set record="+Sent"
+set postponed="+Entwürfe"
+set ssl_starttls = yes
+set ssl_force_tls = yes 
+
