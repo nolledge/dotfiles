@@ -1,0 +1,4 @@
+*.json
+*.db
+*.pickle
+_beet_cached
