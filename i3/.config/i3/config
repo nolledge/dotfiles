@@ -185,7 +185,7 @@ exec dunst
 bar {
     colors {
         background               $bgcolor
-        statusline               $yellow
+        statusline               $green
         #Workspace Colors        #border   #bg       #text
         inactive_workspace       $bgcolor  $bgcolor  $yellow
         focused_workspace        $green    $green    $fgcolor
