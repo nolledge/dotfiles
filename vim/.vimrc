@@ -24,7 +24,7 @@ set tabstop=4 " 1 tab = 4 spaces
 set tm=500
 
 """ Set powerline font
-set guifont=Cousine\ for\ Powerline
+set guifont=Roboto\ Mono\ for\ Powerline
 """ Searching
 set ignorecase " ignore case when searching
 set incsearch " incremental search

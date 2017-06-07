@@ -18,7 +18,7 @@ usage=$(df -h -P -l "$DIR" | awk -v alert_low=$ALERT_LOW '
                                 print "#CC6666"
                                     }}')        
 
-        echo "-Sys Space used:" $usage""
+        echo "-Sys Space used:" $usage""
         if [[ $BLOCK_BUTTON == '1' ]]; then
                 urxvt -title "float" -geometry 80x35 -hold -e df -a
         fi

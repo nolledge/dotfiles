@@ -19,7 +19,7 @@ Xft.antialias:          true
 Xft.rgba:               rgb
 Xft.hinting:            true
 Xft.lcdfilter:          lcddefault
-Xft.hintstyle:          hintsfull
+Xft.hintstyle:          hintslight
 
 
 !-----------------------------------------------------------------------
@@ -45,10 +45,10 @@ URxvt*scrollTtyKeypress: true
 
 !! Fonts
 ! Droid Sans Mono for Powerline Mono
-!URxvt*font:             xft:Droid Sans Mono for Powerline:size=8, xft:Droid Mono Dotted for Powerline:size=8
-!URxvt*boldFont:         xft:Droid Sans Mono for Powerline:normal:size=8
-!URxvt*italicFont:       xft:Droid Sans Mono for Powerline:italic:autohint=true:size=8
-!URxvt*boldItalicFont:   xft:Droid Sans Mono for Powerline:bolditalic:italic:autohint=true:size=8
+URxvt*font:             xft:Roboto Mono for Powerline:size=10
+URxvt*boldFont:         xft:Roboto Mono for Powerline:size=10:autohint:true
+URxvt*italicFont:       xft:Roboto Mono Italic for Powerline:size=10:autohint=true
+URxvt*boldItalicFont:   xft:Roboto Mono Bold Italic for Powerline:size=10:autohint=true
 
 ! tewi
 !URxvt.font: -misc-tamzen-medium-r-normal--17-*-*-*-*-*-iso8859-1
@@ -87,7 +87,7 @@ URxvt.keysym.M-u: perl:     url-select:select_next
 URxvt.url-select.autocopy:  true
 URxvt.url-select.button:    2
 URxvt.url-select.underline: true
-URxvt.url-launcher:         /usr/bin/qutebrowser
+URxvt.url-launcher:         firefox 
 URxvt.matcher.button:       1
 
 !! CopyPaste Keys
