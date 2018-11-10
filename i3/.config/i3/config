@@ -8,26 +8,6 @@ set $myres                       10
 set $gsi                         10
 set $gso                         20
 
-# Custom colors
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set_from_resource $white       color15 #000000
-
-# Use custom colors for black
-set $black       #002b36
-set $darkblack   #073642
-set $sub #839496
 
 #################
 # CONFIGURATION #
@@ -37,17 +17,22 @@ focus_follows_mouse              yes
 popup_during_fullscreen          smart
 workspace_layout                 default
 
-##############
+#------------#
 # APPEARANCE #
-##############
-# Window colors           border    background   text          
-client.focused            $white    $white       $darkblue
-client.focused_inactive   $black    $black       $sub
-client.unfocused          $black    $black       $sub
-client.urgent             $black    $black       $sub
+#------------#
+
+# window border
+for_window [class="^.*"] border pixel 0
+
+# class				border		background	text		indicator	child border
+client.focused          	#		#		#	 	#		#
+client.unfocused        	#		#		#		#		#
+client.focused_inactive 	#		#		#		#		#
+client.urgent           	#		#		#		#		#
+client.background 		#
 
 # Set font
-font pango: Lato, Material Design Icons 8 
+font pango:Hack 14
 # Configure window borders
 hide_edge_borders                none
 gaps inner                       $gsi
@@ -73,6 +58,10 @@ bindsym Print                    exec scrot /home/christof/scrot.png;exec notify
 bindsym Shift+Print              exec zsh "/home/christof/.teknik_upload.sh"      
 bindsym $mod+n                   gaps inner all set 0;gaps outer all set 0;
 bindsym $mod+m                   gaps inner all set $gsi;gaps outer all set $gso;
+
+## backlight
+bindcode 233 exec xbacklight +5
+bindcode 232 exec xbacklight -5
 
 ### Audio Keybindings ###
 bindsym $mod+b                   exec "amixer -q sset Speaker,0 toggle;amixer -q sset Headphone,0 toggle"
@@ -172,24 +161,9 @@ bindsym $mod+r                   mode "resize"
 ####################
 # STARTUP PROGRAMS #
 ####################
-exec bash /home/christof/.monitor_setup
-exec unclutter
-exec xset r rate 200 25
-exec "/home/christof/.monitor_setup"
+exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
 exec dunst
 #######
 # BAR #
 #######
-bar {
-    colors {
-        separator                $darkblack
-        background               $black
-        statusline               $blue
-        #Workspace Colors        #border   #bg       #text
-        inactive_workspace       $black  $black  $magenta
-        focused_workspace        $black    $black    $red
-    }
-    font                         pango:Roboto Mono Nerd Font Complete 12px
-    position                     top
-    status_command               i3blocks -c ~/.config/i3/statusbar/i3blocks.conf
-}
+exec_always --no-startup-id ~/.config/i3/polybar_scripts/bar.sh

@@ -1,29 +1,23 @@
 ! ------------------------------------------------------------------------------
 !                      ROFI Settings
 ! ------------------------------------------------------------------------------
+! state			background	border		separator
+rofi.color-window:	#ffffff,	#191919,	#191919	
 
-! General
-rofi.font:                Fixed 8
-rofi.fake-transparency:   true
-rofi.hide-scrollbar:      true
+! state			bg		fg		abg		hbg		hfg
+rofi.color-normal:	#ffffff,	#191919,	#ffffff,	#191919,	#ffffff
 
+! general
+rofi.width: 33
+rofi.padding: 30
+rofi.hide-scrollbar: true
+rofi.borderwidth: 0
+rofi.columns: 1
+rofi.lines: 5
+rofi.separator-style: solid
+rofi.font: Hack 10
 
-! Layout
-rofi.width:              25
-rofi.column:             4
-rofi.location:           0
-rofi.lines:              8
-rofi.padding:            50
-rofi.sidebar-mode:       false
-rofi.fullscreen:         false
+rofi.color-enabled: true
+!rofi.color-window: #f2a2f0, #f2a2f0, #f2a2f0
+!rofi.color-normal: #f2a2f0, #f2a2f0, #f2a2f0
 
-! ------------------------------------------------------------------------------
-!                      ROFI Color theme
-! ------------------------------------------------------------------------------
-rofi.color-enabled:      true
-! State                  'bg'     'fg'     'bgalt'  'hlbg'   'hlfg'
-rofi.color-normal:       #002b36, #839496, #002b36, #b58900, #002b36
-rofi.color-active:       #002b36, #4c544f, #002b36, #4c544f, #002b36
-rofi.color-urgent:       #002b36, #442216, #002b36, #442216, #002b36
-!                        'bg'     'bc'
-rofi.color-window: #002b36, #073642

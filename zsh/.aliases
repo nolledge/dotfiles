@@ -40,7 +40,7 @@ alias sstatus='sudo systemctl status $@'
 alias c='clear'
 alias h='cd ~'
 alias w='cd ~/workspace'
-alias dl='cd ~/libs/Downloads'
+alias dl='cd ~/Downloads'
 alias nas='cd ~/archive'
 
 # laravel
@@ -74,7 +74,12 @@ flactomp3() {
           ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"
       done
 }
+
+lu() {
+    history | grep $1
+}
 alias vimgo='vim -u ~/.vimrc.go'
 alias vimphp='vim -u ~/.vim.php/vimrc'
 alias pacman='sudo pacman'
 alias weather='curl wttr.in/Hamburg'
+alias tm='mv *.mp3 ~/archive/phone_sync/music'
