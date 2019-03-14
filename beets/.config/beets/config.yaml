@@ -1,4 +1,5 @@
-directory: /home/christof/libs/music_sorted
+directory: /home/christof/archive/Musik/music_sorted
+library: /home/christof/workspace/dotfiles/beets/.config/beets/library.db
 
 threaded: yes
 art_filename: cover                                                                                                                   

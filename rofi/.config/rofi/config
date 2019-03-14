@@ -1,23 +1,22 @@
-! ------------------------------------------------------------------------------
-!                      ROFI Settings
-! ------------------------------------------------------------------------------
-! state			background	border		separator
-rofi.color-window:	#ffffff,	#191919,	#191919	
-
-! state			bg		fg		abg		hbg		hfg
-rofi.color-normal:	#ffffff,	#191919,	#ffffff,	#191919,	#ffffff
-
-! general
-rofi.width: 33
-rofi.padding: 30
-rofi.hide-scrollbar: true
-rofi.borderwidth: 0
-rofi.columns: 1
-rofi.lines: 5
-rofi.separator-style: solid
-rofi.font: Hack 10
-
-rofi.color-enabled: true
-!rofi.color-window: #f2a2f0, #f2a2f0, #f2a2f0
-!rofi.color-normal: #f2a2f0, #f2a2f0, #f2a2f0
-
+edfi.show-icons:            false
+rofi.modi:                  drun,run,window,ssh
+rofi.lines:                 7
+rofi.line-padding:          10
+rofi.matching:              fuzzy
+rofi.bw:                    0
+rofi.padding:               0
+rofi.separator-style:       none
+rofi.hide-scrollbar:        true
+rofi.line-margin:           0
+rofi.font:                  sans-serif 10
+rofi.theme: ~/.config/rofi/custom-nord.rasi
+rofi.lines:                 7
+rofi.line-padding:          10
+rofi.matching:              fuzzy
+rofi.bw:                    0
+rofi.padding:               0
+rofi.separator-style:       none
+rofi.hide-scrollbar:        true
+rofi.line-margin:           0
+rofi.font:                  sans-serif 10
+rofi.theme: ~/.config/rofi/custom-nord.rasi

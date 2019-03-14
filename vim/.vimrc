@@ -5,8 +5,6 @@ source ~/.vim/vundlerc
 
 """ Editing
 let mapleader=","
-set background=dark
-colorscheme ron
 " highlight LineNr ctermfg=blue
 syntax enable " enable syntax highlighting
 set encoding=utf-8 " set default encoding
@@ -23,11 +21,16 @@ set t_vb=
 set tabstop=4 " 1 tab = 4 spaces
 set tm=500
 
+
 """ Set powerline font
 set guifont=Roboto\ Mono\ for\ Powerline
 """ Searching
 set ignorecase " ignore case when searching
 set incsearch " incremental search
+
+""" Color schema
+set background=dark
+colorscheme nord
 
 """ History
 " use an undo file to persist across reopening
@@ -89,8 +92,12 @@ let g:tagbar_type_scala = {
     \ ]
     \ }
 """ Airline
-let g:airline_theme='base16_solarized'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 """ Custom Commands
 command W w !sudo tee % > /dev/null
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
+
+""" Haskell vim
+syntax on
+filetype plugin indent on

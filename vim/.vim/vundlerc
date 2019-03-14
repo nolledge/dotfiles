@@ -25,6 +25,15 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+" Optional:
+Plugin 'honza/vim-snippets'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 " enable filetype plugins, put after Vundle
 filetype indent on

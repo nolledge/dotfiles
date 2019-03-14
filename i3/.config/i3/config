@@ -22,14 +22,14 @@ workspace_layout                 default
 #------------#
 
 # window border
-for_window [class="^.*"] border pixel 0
+#for_window [class="^.*"] border pixel 0
 
-# class				border		background	text		indicator	child border
-client.focused          	#		#		#	 	#		#
-client.unfocused        	#		#		#		#		#
-client.focused_inactive 	#		#		#		#		#
-client.urgent           	#		#		#		#		#
-client.background 		#
+# border colors
+client.focused #00C1FF #00C1FF #000088 #00C1FF
+client.unfocused #BF616A #BF616A #BF616A #BF616A
+
+# class                 border  backgr. text
+client.focused #A3BE8C #A3BE8C #A3BE8C
 
 # Set font
 font pango:Hack 14
@@ -161,9 +161,10 @@ bindsym $mod+r                   mode "resize"
 ####################
 # STARTUP PROGRAMS #
 ####################
-exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill ~/cat_coffee.png
 exec dunst
 #######
 # BAR #
 #######
-exec_always --no-startup-id ~/.config/i3/polybar_scripts/bar.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
