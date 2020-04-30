@@ -14,5 +14,13 @@ dunst -config $HOME/.config/dunst/dunstrc &
 #nitrogen --restore 2> /dev/null &
 #source .local/bin/dwm-status &
 
-setxkbmap de
+# Settings for Japanese input
+export GTK_IM_MODULE='ibus'
+export QT_IM_MODULE='ibus'
+export XMODIFIERS=@im='ibus'
+
+export GTK_IM_MODULE_FILE=/usr/lib/gtk-3.0/3.0.0/immodules.cache
+
+#Toolbar for anthy
+#ibus-daemon -drx
 exec  i3

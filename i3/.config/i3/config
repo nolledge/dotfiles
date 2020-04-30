@@ -1,6 +1,4 @@
 #############
-# VARIABLES #
-#############
 set $mod                         Mod4
 # Sizes
 set $bordersize                  3
@@ -126,7 +124,7 @@ bindsym $mod+Shift+Up            move up
 bindsym $mod+Shift+Right         move right
 
 ### Layout Keybindings ###
-# Layout mode
+# Layout jode
 bindsym $mod+w                   layout tabbed
 bindsym $mod+e                   layout toggle split
 bindsym $mod+f                   fullscreen
@@ -136,6 +134,9 @@ bindsym $mod+v                   split v
 # Floating
 bindsym $mod+Shift+space         floating toggle
 bindsym $mod+space               focus mode_toggle
+
+# switch to monitor
+bindsym $mod+x move workspace to output right
 
 ### Scratchpad Keybindings ###
 bindsym $mod+Shift+minus         move scratchpad

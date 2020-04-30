@@ -43,8 +43,9 @@ alias w='cd ~/workspace'
 alias dl='cd ~/Downloads'
 alias nas='cd ~/archive'
 
-# laravel
-alias lara='php artisan'
+alias gs='git status'
+alias dls='docker container ls'
+
 
 # My functions
 dlwebsite() {
@@ -75,11 +76,16 @@ flactomp3() {
       done
 }
 
+# lu() {
+#    history | grep $1
+#}
 lu() {
-    history | grep $1
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
 alias vimgo='vim -u ~/.vimrc.go'
 alias vimphp='vim -u ~/.vim.php/vimrc'
 alias pacman='sudo pacman'
 alias weather='curl wttr.in/Hamburg'
 alias tm='mv *.mp3 ~/archive/phone_sync/music'
+alias xcp='xclip -f'
+alias jfm='python -m json.tool'
