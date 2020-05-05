@@ -8,15 +8,9 @@ rofi.padding:               0
 rofi.separator-style:       none
 rofi.hide-scrollbar:        true
 rofi.line-margin:           0
-rofi.font:                  sans-serif 10
-rofi.theme: ~/.config/rofi/custom-nord.rasi
-rofi.lines:                 7
-rofi.line-padding:          10
-rofi.matching:              fuzzy
-rofi.bw:                    0
-rofi.padding:               0
-rofi.separator-style:       none
-rofi.hide-scrollbar:        true
-rofi.line-margin:           0
-rofi.font:                  sans-serif 10
-rofi.theme: ~/.config/rofi/custom-nord.rasi
+rofi.font:                  Hack Bold 13
+rofi.color-enabled: true
+rofi.color-window: #282a36, #282a36, #6272a4
+rofi.color-normal: #282a36, #f8f8f2, #282a36, #6272a4, #f8f8f2
+rofi.color-active: #282a36, #6272a4, #282a36, #f8f8f2, #205171
+rofi.color-urgent: #282a36, #f3843d, #282a36, #6272a4, #ffc39c

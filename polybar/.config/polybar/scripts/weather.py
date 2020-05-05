@@ -16,9 +16,13 @@ def main():
         weather = json.loads(urllib.request.urlopen(
             'http://api.openweathermap.org/data/2.5/weather?' + data)
             .read())
-        desc = weather['weather'][0]['description'].capitalize()
-        icons = {"Thunderstorm":"", "Drizzle":"", "Rain":"", "Snow":"", "Mist":"", "Smoke":"", "Haze":"", "Dust":"", "Fog":"", "Sand":"", "Dust":"", "Ash":"", "Squall":"", "Tornado":"", "Clear":"", "Clouds":""}
-        icon = icons.get (desc, 'none')
+        desc = weather['weather'][0]['description'].lower()
+        icons = {"thunderstorm":"", "drizzle":"", "rain":"", "snow":"", "mist":"", "smoke":"", "haze":"", "dust":"", "fog":"", "sand":"", "dust":"", "ash":"", "squall":"", "tornado":"", "clear":"", "clouds":""}
+        matches = {k: v for k, v in icons.items() if k in desc}
+        #print(next(x for x in matches if ...))
+        icon = next(iter(matches.values()))
+        
+        #icon = icons.get (key, 'none')
         temp = int(float(weather['main']['temp']))
         #return icon + ' ' + desc + ' ' + temp + ''
         return ' {}  {}, {}°C '.format(icon, desc, temp)

@@ -23,11 +23,14 @@ workspace_layout                 default
 #for_window [class="^.*"] border pixel 0
 
 # border colors
-client.focused #00C1FF #00C1FF #000088 #00C1FF
-client.unfocused #BF616A #BF616A #BF616A #BF616A
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-# class                 border  backgr. text
-client.focused #A3BE8C #A3BE8C #A3BE8C
+client.background       #F8F8F2
 
 # Set font
 font pango:Hack 14
@@ -56,6 +59,7 @@ bindsym Print                    exec scrot /home/christof/scrot.png;exec notify
 bindsym Shift+Print              exec zsh "/home/christof/.teknik_upload.sh"      
 bindsym $mod+n                   gaps inner all set 0;gaps outer all set 0;
 bindsym $mod+m                   gaps inner all set $gsi;gaps outer all set $gso;
+bindsym $mod+Shift+b             exec env XSECURELOCK_SAVER=saver_mpv XSECURELOCK_DISCARD_FIRST_KEYPRESS=0 XSECURELOCK_IMAGE_DURATION_SECONDS=8 XSECURELOCK_LIST_VIDEOS_COMMAND='find ~/Images/screensaver/blade_runner -type f' xsecurelock
 
 ## backlight
 bindcode 233 exec xbacklight +5
@@ -162,7 +166,7 @@ bindsym $mod+r                   mode "resize"
 ####################
 # STARTUP PROGRAMS #
 ####################
-exec_always --no-startup-id feh --bg-fill ~/cat_coffee.png
+exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
 exec dunst
 #######
 # BAR #

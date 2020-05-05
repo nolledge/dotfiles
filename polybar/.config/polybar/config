@@ -18,9 +18,10 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = Comfortaa:pixelsize=8;2
-font-1 = UbuntuMono Nerd Font:size=10;1
-font-2 = UbuntuMono Nerd Font:size=16;4
+;font-0 = Comfortaa:pixelsize=8;2
+font-0 = Hack Nerd Font:size=10;1
+font-1 = Hack Nerd Font:size=10;1
+font-2 = Hack Nerd Font:size=16;4
 
 modules-left = ip wireless-network
 modules-center = date
@@ -46,11 +47,12 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = Comfortaa:pixelsize=8;2
-font-1 = UbuntuMono Nerd Font:size=10;2
-font-2 = UbuntuMono Nerd Font:size=16;3
+;font-0 = Comfortaa:pixelsize=8;2
+font-0 = Hack Nerd Font:size=10;2
+font-1 = Hack Nerd Font:size=10;2
+font-2 = Hack Nerd Font:size=16;3
 
-modules-left = bspwm i3 
+modules-left = i3 
 modules-center =  windowtitle
 modules-right = cpu memory
 
@@ -149,7 +151,8 @@ format-volume-background = #6272a4
 format-volume-foreground = #f8f8f8
 format-volume-prefix = %{T3} %{T-}
 format-volume-prefix-foreground = #6272a4	
-format-volume-prefix-background = #f1fa8c	
+format-volume-prefix-background = #ffb86c		
+;format-volume-prefix-background = #f1fa8c
 format-muted-prefix = %{T3} %{T-}
 format-muted-background = #6272a4
 format-muted-foreground = #f8f8f8
@@ -171,7 +174,7 @@ format-prefix-background = #ffb86c
 type = internal/network
 format-connected =    <label-connected>
 label-connected = %essid% :  %upspeed%   %downspeed%
-interface = wlp1s0
+interface = wlp3s0
 format-disconnected-suffix =%{T3}%{T-}
 format-disconnected-background = #ff5555
 format-disconnected-suffix-foreground = ${colors.background-alt}
@@ -187,22 +190,6 @@ format-connected-suffix-background = 282a36
 format-connected-prefix = %{T3}%{T-}
 format-connected-prefix-foreground = #ff5555	
 format-connected-prefix-background = #ff5555	
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-[module/ip]
-type = internal/network
-interface = wlp1s0
-format-connected =  <label-connected>
-format-disconnected = <label-disconnected>
-label-disconnected = Not Connected
-label-connected = %local_ip%
-format-connected-background = #bd93f9	
-format-connected-foreground = #212121
-format-connected-suffix =%{T3}%{T-}
-format-connected-suffix-foreground = #bd93f9
-format-connected-suffix-background = #ff5555
-format-connected-prefix = %{T3}%{T-}
-format-connected-prefix-foreground = #bd93f9
-format-connected-prefix-background = #bd93f9
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/bspwm]
 type = internal/bspwm
@@ -225,7 +212,23 @@ label-empty-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/ip]
+type = internal/network
+interface = wlp3s0
+format-connected =  <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = Not Connected
+label-connected = %local_ip%
+format-connected-background = #bd93f9	
+format-connected-foreground = #212121
+format-connected-suffix =%{T3}%{T-}
+format-connected-suffix-foreground = #bd93f9
+format-connected-suffix-background = #ff5555
+format-connected-prefix = %{T3}%{T-}
+format-connected-prefix-foreground = #bd93f9
+format-connected-prefix-background = #bd93f9
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
