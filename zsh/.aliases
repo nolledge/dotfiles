@@ -1,10 +1,6 @@
 #!/usr/bin/zsh
 
-# Error fixing
 alias ..='cd ..'
-alias vi='vim'
-alias vmi='vim'
-alias sl='ls'
 
 # Overwrites
 alias alsamixer="alsamixer -g"
@@ -87,5 +83,17 @@ alias vimphp='vim -u ~/.vim.php/vimrc'
 alias pacman='sudo pacman'
 alias weather='curl wttr.in/Hamburg'
 alias tm='mv *.mp3 ~/archive/phone_sync/music'
-alias xcp='xclip -f'
+alias xcp='xclip -f -selection clipboard'
 alias jfm='python -m json.tool'
+
+alias hgrep='history | grep '
+alias mb='/home/christof/workspace/some_music'
+
+bp(){
+    curDate=`date +%Y-%m-%d`
+    bpPath="/home/christof/workspace/some_music/_posts/$curDate-$1.md"
+    cp /home/christof/workspace/some_music/_posts/2018-04-11-first-post.md $bpPath
+    vim $bpPath
+}
+
+alias v='nvim'
