@@ -42,3 +42,10 @@ let g:airline_powerline_fonts = 1
 map <C-f> <Esc><Esc>:GFiles!<CR>
 inoremap <C-f> <Esc><Esc>:BLines!<CR>
 map <C-g> <Esc><Esc>:BCommits!<CR>
+
+
+""" Shortcuts for easy navigation between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
