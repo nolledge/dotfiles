@@ -1,6 +1,9 @@
 {
-    "metals.statusBarEnabled": true,
+    "coc.preferences.formatOnType": true,
     "codeLens.enable": true,
-    "metals.superMethodLensesEnabled": true,
-    "coc.preferences.formatOnType": true
+    "diagnostic.errorSign": "✘",
+    "diagnostic.warningSign": "",
+    "metals.statusBarEnabled": true,
+    "diagnostic.checkCurrentLine": true,
+    "metals.superMethodLensesEnabled": true,"coc.preferences.formatOnSaveFiletypes": ["scala"]
 }

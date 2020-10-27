@@ -28,4 +28,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'chrisbra/csv.vim'
+
 call plug#end()

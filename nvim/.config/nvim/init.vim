@@ -31,6 +31,8 @@ source ~/.config/nvim/plugins.vim
 " Include coc mappings for lsp
 source ~/.config/nvim/coc_mappings.vim
 
+let mapleader = ","
+
 " Set scheme
 colorscheme nord
 
@@ -49,3 +51,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+""" Convenient copy paste
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
