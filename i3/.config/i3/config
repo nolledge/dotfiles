@@ -55,8 +55,9 @@ bindsym $mod+Shift+c             reload
 bindsym $mod+Shift+r             restart
 bindsym $mod+Shift+e             exec "/home/christof/.config/i3/power"
 bindsym $mod+Shift+q             kill
+bindsym $mod+Shift+m             exec "/home/christof/monitor_setup.sh"
 bindsym Print                    exec scrot /home/christof/scrot.png;exec notify-send -u low "scrot" "scrot captured";
-bindsym Shift+Print              exec zsh "/home/christof/.teknik_upload.sh"      
+bindsym Shift+Print              exec scrot -s /home/christof/scrot.png;exec notify-send -u low "scrot" "scrot captured";
 bindsym $mod+n                   gaps inner all set 0;gaps outer all set 0;
 bindsym $mod+m                   gaps inner all set $gsi;gaps outer all set $gso;
 bindsym $mod+Shift+b             exec env XSECURELOCK_SAVER=saver_mpv XSECURELOCK_DISCARD_FIRST_KEYPRESS=0 XSECURELOCK_IMAGE_DURATION_SECONDS=8 XSECURELOCK_LIST_VIDEOS_COMMAND='find ~/Images/screensaver/blade_runner -type f' xsecurelock
@@ -166,7 +167,7 @@ bindsym $mod+r                   mode "resize"
 ####################
 # STARTUP PROGRAMS #
 ####################
-exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill ~/neon_wp.png
 exec dunst
 #######
 # BAR #

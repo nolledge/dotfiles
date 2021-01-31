@@ -1,4 +1,5 @@
 " General
+let mapleader=','
 set number " absoulte line number on cursor
 set relativenumber " Show relative line numbers
 set linebreak	" Break lines at word (requires Wrap lines)
@@ -31,7 +32,6 @@ source ~/.config/nvim/plugins.vim
 " Include coc mappings for lsp
 source ~/.config/nvim/coc_mappings.vim
 
-let mapleader = ","
 
 " Set scheme
 colorscheme nord

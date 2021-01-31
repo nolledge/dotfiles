@@ -41,6 +41,7 @@ alias nas='cd ~/archive'
 
 alias gs='git status'
 alias dls='docker container ls'
+alias k='kubectl'
 
 
 # My functions
@@ -89,6 +90,8 @@ alias jfm='python -m json.tool'
 alias hgrep='history | grep '
 alias mb='/home/christof/workspace/some_music'
 
+export do='--dry-run=client -o yaml'
+
 bp(){
     curDate=`date +%Y-%m-%d`
     bpPath="/home/christof/workspace/some_music/_posts/$curDate-$1.md"
@@ -97,3 +100,5 @@ bp(){
 }
 
 alias v='nvim'
+alias vf='nvim $(fzf)'
+alias eng='trans de:en'
