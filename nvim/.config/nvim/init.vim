@@ -26,6 +26,9 @@ set ruler	" Show row and column ruler information
 set undolevels=1000	" Number of undo levels
 set backspace=indent,eol,start	" Backspace behaviour
 
+" Disable polyglot for markdown
+let g:polyglot_disabled = ['markdown']
+
 " Source plugins
 source ~/.config/nvim/plugins.vim
 
