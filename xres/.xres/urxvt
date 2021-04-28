@@ -267,7 +267,7 @@ URxvt*url-launcher: librefox
 URxvt*letterSpace: 0
 
 ! Specifies whether to use native transparency
-!URxvt*transparent: false
+URxvt*transparent: false
 !URxvt.perl-ext-common: default,matcher,clipboard
 !URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 !URxvt.keysym.Shift-Control-V: perl:clipboard:paste

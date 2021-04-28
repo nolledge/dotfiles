@@ -21,6 +21,7 @@ Plug 'liuchengxu/vista.vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-grepper'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -29,5 +30,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'chrisbra/csv.vim'
+Plug 'tpope/vim-surround'
+
+Plug 'preservim/nerdcommenter'
 
 call plug#end()

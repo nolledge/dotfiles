@@ -40,6 +40,7 @@ alias dl='cd ~/Downloads'
 alias nas='cd ~/archive'
 
 alias gs='git status'
+alias gco='git checkout'
 alias dls='docker container ls'
 alias k='kubectl'
 
@@ -102,3 +103,10 @@ bp(){
 alias v='nvim'
 alias vf='nvim $(fzf)'
 alias eng='trans de:en'
+alias 1p='pass -c Business/OnePass'
+alias ll='exa -al --color=always --group-directories-first'
+alias ts='date +"%s"'
+
+rand(){
+    tr -dc A-Za-z0-9 </dev/urandom | head -c $1 ; echo ''
+}

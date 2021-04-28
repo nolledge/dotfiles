@@ -5,5 +5,7 @@
     "diagnostic.warningSign": "",
     "metals.statusBarEnabled": true,
     "diagnostic.checkCurrentLine": true,
-    "metals.superMethodLensesEnabled": true,"coc.preferences.formatOnSaveFiletypes": ["scala"]
+    "metals.superMethodLensesEnabled": true,
+    "coc.preferences.formatOnSaveFiletypes": ["scala"],
+    "metals.showImplicitArguments": true
 }

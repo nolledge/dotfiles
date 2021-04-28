@@ -25,7 +25,7 @@ font-2 = Hack Nerd Font:size=16;4
 
 modules-left = ip wireless-network
 modules-center = date
-modules-right = weather pulseaudio battery shutdown-text
+modules-right = weather xkeyboard pulseaudio battery shutdown-text
 
 tray-position = none
 tray-padding = 2
@@ -151,13 +151,13 @@ format-volume-background = #6272a4
 format-volume-foreground = #f8f8f8
 format-volume-prefix = %{T3} %{T-}
 format-volume-prefix-foreground = #6272a4	
-format-volume-prefix-background = #ffb86c		
+format-volume-prefix-background = #f1fa8c
 ;format-volume-prefix-background = #f1fa8c
 format-muted-prefix = %{T3} %{T-}
 format-muted-background = #6272a4
 format-muted-foreground = #f8f8f8
 format-muted-prefix-foreground = #6272a4	
-format-muted-prefix-background = #ffb86c	
+format-muted-prefix-background = #f1fa8c
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/backlight]
 type = internal/xbacklight
@@ -292,6 +292,18 @@ format-foreground = #212121
 format-prefix = %{T3}%{T-}
 format-prefix-foreground = #ffb86c	
 format-prefix-background = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/xkeyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+format-background = #f1fa8c
+format-foreground = #212121
+format-prefix = %{T3}%{T-}
+format-prefix-foreground = #f1fa8c
+format-prefix-background = #ffb86c	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/shutdown-text]
 type = custom/menu

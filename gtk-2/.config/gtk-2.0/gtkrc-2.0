@@ -1,4 +1,3 @@
-
 gtk-icon-theme-name = "Archdroid-Cyan"
-gtk-theme-name = "Arc-Darker"
-gtk-font-name = "Cousine 8"
+gtk-theme-name = "Dracula"
+gtk-font-name = "Hack 8"

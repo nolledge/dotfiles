@@ -1,6 +1,9 @@
 [user]
     name = Christof Nolle
     email = mail@christof-nolle.de
+[core]
+    excludesfile = /home/christof/.gitignore
+    editor = nvim
 [commit]
     template = /home/christof/.git-commit-template.txt
 [alias]
