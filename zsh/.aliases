@@ -106,7 +106,13 @@ alias eng='trans de:en'
 alias 1p='pass -c Business/OnePass'
 alias ll='exa -al --color=always --group-directories-first'
 alias ts='date +"%s"'
+alias dc='docker-compose'
 
 rand(){
     tr -dc A-Za-z0-9 </dev/urandom | head -c $1 ; echo ''
 }
+
+camelcase() {
+    perl -pe 's#(_|^)(.)#\u$2#g'
+}
+

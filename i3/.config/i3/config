@@ -56,17 +56,18 @@ bindsym $mod+Shift+r             restart
 bindsym $mod+Shift+e             exec "/home/christof/.config/i3/power"
 bindsym $mod+Shift+q             kill
 bindsym $mod+Shift+m             exec "/home/christof/monitor_setup.sh"
+bindsym $mod+Shift+n             exec "xrandr --auto"
 bindsym Print                    exec scrot /home/christof/scrot.png;exec notify-send -u low "scrot" "scrot captured";
-bindsym Shift+Print              exec scrot -s /home/christof/scrot.png;exec notify-send -u low "scrot" "scrot captured";
+bindsym --release Shift+Print    exec "scrot -o -z -s -e 'xclip -selection c -t image/png /home/christof/last_cap.png' /home/christof/last_cap.png"
 bindsym $mod+n                   gaps inner all set 0;gaps outer all set 0;
 bindsym $mod+m                   gaps inner all set $gsi;gaps outer all set $gso;
 bindsym $mod+Shift+b             exec env XSECURELOCK_SAVER=saver_mplayer XSECURELOCK_DISCARD_FIRST_KEYPRESS=0 XSECURELOCK_IMAGE_DURATION_SECONDS=8 XSECURELOCK_LIST_VIDEOS_COMMAND='find ~/Images/screensaver/blade_runner -type f' xsecurelock
 
 ## backlight
-bindsym  XF86MonBrightnessUp     exec "brightnessctl -d 'amdgpu_bl0' set +10%"
+bindsym  XF86MonBrightnessUp     exec "brightnessctl -d 'intel_backlight' set +10%"
 
 # Decrease backlight
-bindsym  XF86MonBrightnessDown   exec "brightnessctl -d 'amdgpu_bl0' set 10%-"
+bindsym  XF86MonBrightnessDown   exec "brightnessctl -d 'intel_backlight' set 10%-"
 
 ### Audio Keybindings ###
 bindsym $mod+b                   exec "amixer -q sset Speaker,0 toggle;amixer -q sset Headphone,0 toggle"
