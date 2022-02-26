@@ -15,7 +15,7 @@ URxvt.internalBorder:	30
 URxvt.scrollBar:	false
 URxvt.letterSpace:	-1
 URxvt.cursorColor:	#191919
-URxvt.font: xft:Hack Nerd Font Mono:size=14
+URxvt.font: xft:FiraCode Nerd Font Mono:size=10
 !! Larger history limit
 URxvt.saveLines: 1000000
 

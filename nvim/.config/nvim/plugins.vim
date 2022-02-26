@@ -32,6 +32,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 
 Plug 'preservim/nerdcommenter'
 Plug 'vim-test/vim-test'
