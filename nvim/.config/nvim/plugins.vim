@@ -13,6 +13,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'Yggdroot/indentLine'
@@ -33,5 +34,8 @@ Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-surround'
 
 Plug 'preservim/nerdcommenter'
+Plug 'vim-test/vim-test'
+
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()

@@ -28,6 +28,8 @@ set backspace=indent,eol,start	" Backspace behaviour
 
 set autoread
 
+
+
 filetype plugin on
 
 " Disable polyglot for markdown
@@ -39,18 +41,19 @@ source ~/.config/nvim/plugins.vim
 " Include coc mappings for lsp
 source ~/.config/nvim/coc_mappings.vim
 
-
-" Set scheme
-colorscheme nord
-
 " Airline
-let g:airline_theme='nord'
+" let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#grepper#enabled = 1
 
+" Seach - Disable Highlighting
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
 
 " FZF
 map <C-f> <Esc><Esc>:GFiles!<CR>
+map <C-j> <Esc><Esc>:Files!<CR>
 inoremap <C-f> <Esc><Esc>:BLines!<CR>
 map <C-g> <Esc><Esc>:BCommits!<CR>
 nnoremap <silent> <space><space> :Buffers<CR>
@@ -98,6 +101,25 @@ nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 xmap <leader>* y:Grepper -noprompt -tool ag -query "<c-r>""<cr>
 
+" redraw syntax highlighting with F12
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+let test#scala#runner = 'blooptest'
+let test#strategy = "neovim"
+let g:test#scala#blooptest#project_name = 'sphere-project'
+
+
+" ESC to switch mode in terminal
+:tnoremap <Esc> <C-\><C-n>
+
+
 command! TODO Grepper -noprompt -tool git -query -E '(TODO|FIXME|XXX|\?\?\?)'
 
 " Return list of matches for given pattern in given range.
@@ -141,3 +163,5 @@ function! CalculateSbtTestOnlyCommand()
     let l:itPrefix = match(@%, '.*/it/.*') == -1 ? '' : 'it:'
     return l:itPrefix . "testOnly " . l:package . "." . l:class
 endfunction
+
+colorscheme nord

@@ -13,10 +13,9 @@ alias stow='stow --verbose=2'
 
 # Alias functions
 alias bigfiles='find . -size +250M -exec ls --size -h {} \+ | sort -rh'
-alias bro='apropos'
 alias cpu_usage="top -d 0.5 -b -n 2 | grep Cpu | tail -n 1 | cut -c 1-24 | awk '{print \$3}'"
 alias fdu="du -ahd 1 | sort -hr"
-alias l='ls -lah --group-directories-first --size --color $@'
+#alias l='ls -lah --group-directories-first --size --color $@'
 alias marvin='sshfs -o IdentityFile=/home/cjbarrac/.ssh/id_rsa -p 4242 download@192.168.0.11:/home/ /home/cjbarrac/Web/sshfs/marvin'
 alias powersave='sudo powerdown;sudo powertop --auto-tune'
 alias saltybet='mpv http://www.twitch.tv/saltybet'
@@ -25,12 +24,6 @@ alias vless='vim -u /usr/share/vim/vim74/macros/less.vim'
 alias xres='xrdb -merge ~/.Xresources'
 alias loopback='pactl load-module module-loopback latency_msec=1'
 
-# systemctl functions
-alias sdisable=' sudo systemctl disable $@'
-alias senable='sudo systemctl enable $@'
-alias srestart='sudo systemctl restart $@'
-alias sstart='sudo systemctl start $@'
-alias sstatus='sudo systemctl status $@'
 
 # locations
 alias c='clear'
@@ -40,46 +33,16 @@ alias dl='cd ~/Downloads'
 alias nas='cd ~/archive'
 
 alias gs='git status'
-alias gco='git checkout'
+#alias gco='git checkout'
 alias dls='docker container ls'
-alias k='kubectl'
+#alias k='kubectl'
 
 
 # My functions
-dlwebsite() {
-	wget --random-wait -r -p -e robots=off -U mozilla $1
-}
-dlpdf() {
-    wget -r -l 1 -nd -nH -A pdf $1
-}
-killorphans() {
-	if [[ ! -n $(pacaur -Qdt) ]]; then
-		echo "No more orphans to kill"
-	else
-		pacaur -Rns $(pacaur -Qdtq)
-	fi
-}
 replaceall() {
     grep -rl "$1" . | xargs sed -i "s/$1/$2/g"
 }
-updatehosts() {
-    cd /tmp
-    wget http://winhelp2002.mvps.org/hosts.txt
-    sudo rm /etc/hosts
-    sudo mv hosts.txt /etc/hosts
-}
-flactomp3() {
-    for a in ./*.flac; do
-          ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"
-      done
-}
 
-# lu() {
-#    history | grep $1
-#}
-lu() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
-}
 alias vimgo='vim -u ~/.vimrc.go'
 alias vimphp='vim -u ~/.vim.php/vimrc'
 alias pacman='sudo pacman'
@@ -93,15 +56,8 @@ alias mb='/home/christof/workspace/some_music'
 
 export do='--dry-run=client -o yaml'
 
-bp(){
-    curDate=`date +%Y-%m-%d`
-    bpPath="/home/christof/workspace/some_music/_posts/$curDate-$1.md"
-    cp /home/christof/workspace/some_music/_posts/2018-04-11-first-post.md $bpPath
-    vim $bpPath
-}
-
 alias v='nvim'
-alias vf='nvim $(fzf)'
+alias vf='nvim (fzf)'
 alias eng='trans de:en'
 alias 1p='pass -c Business/OnePass'
 alias ll='exa -al --color=always --group-directories-first'
@@ -110,3 +66,8 @@ alias ts='date +"%s"'
 rand(){
     tr -dc A-Za-z0-9 </dev/urandom | head -c $1 ; echo ''
 }
+
+set_ns(){
+  kubectl config set-context --current --namespace=$1
+}
+
