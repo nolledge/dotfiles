@@ -1,6 +1,4 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:/usr/local/bin:/Users/cnolle/Library/Application Support/Coursier/bin:$HOME/.jenv/bin:$PATH"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -75,11 +73,10 @@ unsetopt beep
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git scala sbt kubectl zsh-syntax-highlighting vi-mode fzf docker)
+plugins=(git scala sbt kubectl vi-mode fzf docker)
 
 source $ZSH/oh-my-zsh.sh
 
-eval "$(starship init zsh)"
 source ~/.aliases
 
 # User configuration
@@ -98,7 +95,6 @@ export LANG=en_US.UTF-8
 
  bindkey -v
 
-export TERM=xterm-256color
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -111,4 +107,6 @@ export TERM=xterm-256color
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 compdef __start_kubectl k
-eval "$(jenv init -)"
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval "$(starship init zsh)"
