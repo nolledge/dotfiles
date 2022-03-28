@@ -12,5 +12,9 @@
         "statusBarEnabled": true,
         "superMethodLensesEnabled": true,
         "showInferredType": true
-    }
+    },
+    "flutter": {
+        "provider.enableSnippet": true
+    },
+    "snippets.ultisnips.enable": false
 }

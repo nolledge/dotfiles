@@ -36,6 +36,8 @@ Plug 'tpope/vim-abolish'
 
 Plug 'preservim/nerdcommenter'
 Plug 'vim-test/vim-test'
+Plug 'honza/vim-snippets'
+Plug 'kevinhwang91/rnvimr'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 

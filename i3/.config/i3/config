@@ -48,7 +48,7 @@ new_window                       pixel $bordersize
 bindsym $mod+i                   exec notify-send -u low "Internet" "`iw dev wlp3s0 link | grep SSID | cut -c 8-`";
 bindsym $mod+t                   exec notify-send -u low "Time" "`date`"
 bindsym $mod+y                   exec notify-send -u low "Battery" "`bat`"
-bindsym $mod+Return              exec urxvt
+bindsym $mod+Return              exec alacritty
 bindsym $mod+d                   exec rofi -show run
 bindsym $mod+g                   exec manrofi
 bindsym $mod+Shift+c             reload
