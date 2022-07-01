@@ -40,7 +40,7 @@ alias dls='docker container ls'
 
 # My functions
 replaceall() {
-    grep -rl "$1" . | xargs sed -i "s/$1/$2/g"
+    rg -l "$1" | xargs sed -i "s/$1/$2/g"
 }
 
 alias vimgo='vim -u ~/.vimrc.go'

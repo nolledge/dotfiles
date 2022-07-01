@@ -83,9 +83,9 @@ let g:grepper.jump = 1
 let g:grepper.prompt_mapping_side = '<c-l>'
 let g:grepper.searchreg = 1
 
-nnoremap <leader>/      :Grepper<cr>
+nnoremap <leader>/      :Grepper -tool rg<cr>
 
-nnoremap g/             :Grepper-side<cr>
+nnoremap g/             :Grepper-side -tool rg<cr>
 nnoremap g*             :Grepper-side -cword -noprompt -tool rg<cr>
 xnoremap g/             y:Grepper-side -noprompt -tool rg -query "<c-r>""<cr>
 xmap     g*             g/
@@ -189,3 +189,6 @@ if (has("termguicolors"))
   set termguicolors
 endif
 colorscheme dracula
+
+set conceallevel=0
+
