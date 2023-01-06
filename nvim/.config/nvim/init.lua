@@ -49,13 +49,23 @@ g["airline_theme"] = "dracula"
 g["airline_powerline_fonts"] = 1
 g["airline#extensions#grepper#enabled"] = 1
 
+-- Grepper options
+g.grepper = {
+  tools = {'rg'},
+  quickfix = 1,
+  switch = 1,
+  jump = 1,
+  prompt_mapping_side = '<c-l>',
+  searchreg = 1
+}
+
 --================================
 -- OPTIONS -----------------------
 --================================
 local indent = 2
 
 -- global
-global_opt.shortmess:remove("F"):append("c")
+-- global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
 global_opt.hidden = true
 global_opt.showtabline = 1
@@ -70,7 +80,10 @@ global_opt.completeopt = { "menuone", "noinsert", "noselect" }
 global_opt.scrolloff = 5
 global_opt.laststatus = 3
 
+
+
 -- window-scoped
+opt.number = true
 opt.relativenumber = true
 opt.wrap = false
 opt.cursorline = true
@@ -87,6 +100,7 @@ opt.modeline = false
 -- statusline
 -- opt.statusline = [[%!luaeval('require("mesopotamia.statusline_winbar").super_custom_status_line()')]]
 -- opt.winbar = [[%!luaeval('require("mesopotamia.statusline_winbar").super_custom_winbar()')]]
+require("mesopotamia.statusline")
 
 -- MAPPINGS -----------------------
 map("i", "jj", "<ESC>")
@@ -100,6 +114,12 @@ map("n", "<leader>xml", ":%!xmllint --format -<cr>")
 -- scala-utils
 map("n", "<leader>slc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_line()<CR>]])
 map("n", "<leader>sc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_input()<CR>]])
+
+-- Grepper
+map("n", "<leader>/", ":Grepper<cr>")
+map("n", "g/", ":Grepper-side<cr>")
+map("n", "<leader>*", "<nop>")
+map("n", "<leader>**", ":Grepper -cword -noprompt<cr>")
 
 -- other stuff
 map("n", "<leader><leader>p", [[<cmd>lua require("mesopotamia.playground.functions").peek()<CR>]])

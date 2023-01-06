@@ -20,8 +20,8 @@ local setup = function()
   map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
   map("n", "<leader>cc", [[<cmd>lua RELOAD("telescope").extensions.coursier.complete()<CR>]])
 
-  map("n", "gds", [[<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>]])
-  map("n", "gws", [[<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>]])
+  map("n", "<leader>o", [[<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>]])
+  map("n", "<leader>go", [[<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>]])
 
   local actions = require("telescope.actions")
   require("telescope").setup({
@@ -44,3 +44,4 @@ end
 return {
   setup = setup,
 }
+

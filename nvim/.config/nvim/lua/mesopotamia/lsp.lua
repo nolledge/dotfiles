@@ -1,35 +1,28 @@
 local api = vim.api
-local f = require("mesopotamia.functions")
-local map = f.map
+local map = vim.keymap.set
 
 local setup = function()
   local lsp_config = require("lspconfig")
-  local bare_capabilities = vim.lsp.protocol.make_client_capabilities()
-  local capabilities = require("cmp_nvim_lsp").update_capabilities(bare_capabilities)
 
-  lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
-    capabilities = capabilities,
-  })
-
-  local hover_config = {
-    border = "single",
-  }
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, hover_config)
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
   local lsp_group = api.nvim_create_augroup("lsp", { clear = true })
 
   local on_attach = function(client, bufnr)
     -- LSP agnostic mappings
-    map("n", "gD", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
-    map("n", "K", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
-    map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
-    map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
-    map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
-    map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
-    map("n", "<leader>ca", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
-    map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
-    map("n", "<leader>o", [[<cmd>lua vim.lsp.buf.format({ async = true })<CR>]])
+    map("n", "gD", vim.lsp.buf.definition)
+    map("n", "gtD", vim.lsp.buf.type_definition)
+    map("n", "K", vim.lsp.buf.hover)
+    map("n", "gi", vim.lsp.buf.implementation)
+    map("n", "gr", vim.lsp.buf.references)
+    map("n", "<leader>sh", vim.lsp.buf.signature_help)
+    map("n", "<leader>rn", vim.lsp.buf.rename)
+    map("n", "<leader>ca", vim.lsp.buf.code_action)
+    map("n", "<leader>cl", vim.lsp.codelens.run)
+
+    map("n", "<leader>o", function()
+      vim.lsp.buf.format({ async = true })
+    end)
 
     api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   end
@@ -38,34 +31,43 @@ local setup = function()
   -- Metals specific setup
   --================================
   local metals_config = require("metals").bare_config()
+  metals_config.tvp = {
+    icons = {
+      enabled = true,
+    },
+  }
 
+  --metals_config.cmd = { "cs", "launch", "tech.neader:langoustine-tracer_3:0.0.18", "--", "metals" }
   metals_config.settings = {
+    --disabledMode = true,
+    --bloopVersion = "1.5.3-15-49c6986e-20220816-2002",
     showImplicitArguments = true,
     showImplicitConversionsAndClasses = true,
     showInferredType = true,
-    excludedPackages = {
-      "akka.actor.typed.javadsl",
-      "com.github.swagger.akka.javadsl",
-      "akka.stream.javadsl",
-      "akka.http.javadsl",
-    },
+    enableSemanticHighlighting = true,
+    --fallbackScalaVersion = "2.13.10",
     serverVersion = "latest.snapshot",
+    --serverVersion = "0.11.2+74-7a6a65a7-SNAPSHOT",
+    --serverVersion = "0.11.10-SNAPSHOT",
+    --testUserInterface = "Test Explorer",
   }
 
   metals_config.init_options.statusBarProvider = "on"
-  metals_config.capabilities = capabilities
 
   metals_config.on_attach = function(client, bufnr)
     on_attach(client, bufnr)
 
-    -- Metals specific mappings
-    map("v", "K", [[<Esc><cmd>lua require("metals").type_of_range()<CR>]])
-    map("n", "<leader>ws", [[<cmd>lua require("metals").hover_worksheet()<CR>]])
-    map("n", "<leader>tt", [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]])
-    map("n", "<leader>tr", [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]])
-    map("n", "<leader>st", [[<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>]])
-    -- WIP trying some stuff out with this
-    map("n", "<leader>td", [[<cmd>lua require("metals.test").toggle_test_view()<CR>]])
+    map("v", "K", require("metals").type_of_range)
+
+    map("n", "<leader>ws", function()
+      require("metals").hover_worksheet({ border = "single" })
+    end)
+
+    map("n", "<leader>tt", require("metals.tvp").toggle_tree_view)
+
+    map("n", "<leader>tr", require("metals.tvp").reveal_in_tree)
+
+    map("n", "<leader>mmc", require("metals").commands)
 
     -- A lot of the servers I use won't support document_highlight or codelens,
     -- so we juse use them in Metals
@@ -127,16 +129,16 @@ local setup = function()
       },
     }
 
-    map("n", "<leader>dc", [[<cmd>lua require("dap").continue()<CR>]])
-    map("n", "<leader>dr", [[<cmd>lua require("dap").repl.toggle()<CR>]])
-    map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
-    map("n", "<leader>dt", [[<cmd>lua require("dap").toggle_breakpoint()<CR>]])
-    map("n", "<leader>dso", [[<cmd>lua require("dap").step_over()<CR>]])
-    map("n", "<leader>dsi", [[<cmd>lua require("dap").step_into()<CR>]])
-    map("n", "<leader>drl", [[<cmd>lua require("dap").run_last()<CR>]])
+    map("n", "<leader>dc", require("dap").continue)
+    map("n", "<leader>dr", require("dap").repl.toggle)
+    map("n", "<leader>dK", require("dap.ui.widgets").hover)
+    map("n", "<leader>dt", require("dap").toggle_breakpoint)
+    map("n", "<leader>dso", require("dap").step_over)
+    map("n", "<leader>dsi", require("dap").step_into)
+    map("n", "<leader>drl", require("dap").run_last)
 
     dap.listeners.after["event_terminated"]["nvim-metals"] = function(session, body)
-      vim.notify("Tests have finished!")
+      --vim.notify("Tests have finished!")
       dap.repl.open()
     end
 
@@ -193,8 +195,18 @@ local setup = function()
     },
   })
 
+  lsp_config.yamlls.setup({
+    settings = {
+      yaml = {
+        schemas = {
+          ["https://raw.githubusercontent.com/oyvindberg/bleep/master/schema.json"] = "bleep.yaml"
+        }
+      }
+    }
+  })
+
   -- These server just use the vanilla setup
-  local servers = { "bashls", "dockerls", "html", "tsserver", "yamlls" }
+  local servers = { "bashls", "dockerls", "html", "tsserver", "gopls", "marksman" }
   for _, server in pairs(servers) do
     lsp_config[server].setup({ on_attach = on_attach })
   end
