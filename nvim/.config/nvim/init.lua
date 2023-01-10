@@ -37,6 +37,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.o.hlsearch = true
 
 -- Make relative line numbers default
+vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- Enable mouse mode
