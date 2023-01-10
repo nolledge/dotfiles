@@ -151,7 +151,7 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]find [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]find [H]elp' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
+vim.keymap.set('n', '<leader>**', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]find by [G]rep' })
 vim.keymap.set('n', '<leadleaderer>fd', require('telescope.builtin').diagnostics, { desc = '[F]find [D]iagnostics' })
 
@@ -160,7 +160,7 @@ vim.keymap.set("n", "<leader>mc", require("telescope").extensions.metals.command
 
 vim.keymap.set("n", "<leader>o", require("telescope.builtin").lsp_document_symbols)
 vim.keymap.set("n", "<leader>go",require("telescope.builtin").lsp_dynamic_workspace_symbols)
-vim.keymap.set( "n", "<leader>fd", [[<cmd>lua require("telescope.builtin").find_files({cwd = "~/workspace/dotfiles/nvim/.config/nvim", layout_strategy="vertical"})<CR>]])
+vim.keymap.set( "n", "<leader>vc", [[<cmd>lua require("telescope.builtin").find_files({cwd = "~/workspace/dotfiles/nvim/.config/nvim", layout_strategy="vertical"})<CR>]])
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -251,7 +251,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-  nmap('gD', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('gtD', vim.lsp.buf.type_definition, '[G]o [T]ype [D]efinition')
