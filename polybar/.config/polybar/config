@@ -29,6 +29,7 @@ modules-right = weather xkeyboard pulseaudio battery shutdown-text
 
 tray-position = none
 tray-padding = 2
+tray-reparent = true
 
 module-margin = 0
 

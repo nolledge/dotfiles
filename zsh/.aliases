@@ -63,6 +63,7 @@ alias 1p='pass -c Business/OnePass'
 alias ll='exa -al --color=always --group-directories-first'
 alias ts='date +"%s"'
 alias dc='docker-compose'
+alias nbl='cat /home/christof/nb_templates/literature_note.md | nb add --edit'
 
 rand(){
     tr -dc A-Za-z0-9 </dev/urandom | head -c $1 ; echo ''

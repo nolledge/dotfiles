@@ -22,5 +22,5 @@ export XMODIFIERS=@im='ibus'
 export GTK_IM_MODULE_FILE=/usr/lib/gtk-3.0/3.0.0/immodules.cache
 
 #Toolbar for anthy
-#ibus-daemon -drx
+ibus-daemon -drx
 exec  i3
