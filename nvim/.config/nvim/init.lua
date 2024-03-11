@@ -1,37 +1,29 @@
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd [[packadd packer.nvim]]
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+
+-- [[ Install `lazy.nvim` plugin manager ]]
+--    https://github.com/folke/lazy.nvim
+--    `:help lazy.nvim.txt` for more info
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  }
 end
+vim.opt.rtp:prepend(lazypath)
 
-require("nolledge.plugins")
-
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
--- You'll need to restart nvim, and then it will work.
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end
-
--- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
-})
+require('lazy').setup('plugins')
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+
+-- Autoread file on external changes
+vim.o.autoread = true
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -68,8 +60,6 @@ vim.o.completeopt = 'menuone,noselect'
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -98,6 +88,9 @@ require('lualine').setup {
     theme = 'dracula',
     component_separators = '|',
     section_separators = '',
+    'filename',
+    file_status = true, -- displays file status (readonly status, modified status)
+    path = 2 -- 0 = just filename, 1 = relative path, 2 = absolute path
   },
 }
 
@@ -106,10 +99,7 @@ require('Comment').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
+require('ibl').setup()
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -154,7 +144,7 @@ vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { des
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]find [H]elp' })
 vim.keymap.set('n', '<leader>**', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]find by [G]rep' })
-vim.keymap.set('n', '<leadleaderer>fd', require('telescope.builtin').diagnostics, { desc = '[F]find [D]iagnostics' })
+vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]find [D]iagnostics' })
 
 vim.keymap.set('n', '<leader>gh', require('telescope.builtin').git_commits, { desc = '[G]it [H]istory' })
 vim.keymap.set("n", "<leader>mc", require("telescope").extensions.metals.commands, {desc = '[Metals] Commands'})
@@ -162,12 +152,13 @@ vim.keymap.set("n", "<leader>mc", require("telescope").extensions.metals.command
 vim.keymap.set("n", "<leader>o", require("telescope.builtin").lsp_document_symbols)
 vim.keymap.set("n", "<leader>go",require("telescope.builtin").lsp_dynamic_workspace_symbols)
 vim.keymap.set( "n", "<leader>vc", [[<cmd>lua require("telescope.builtin").find_files({cwd = "~/workspace/dotfiles/nvim/.config/nvim", layout_strategy="vertical"})<CR>]])
+vim.keymap.set( "n", "<leader>fm", '<cmd>!scalafmt %<cr>')
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'scala' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'vimdoc', 'vim', 'scala', 'markdown' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -226,11 +217,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -270,6 +256,11 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+-- Diagnostic keymaps
+  nmap('[d', vim.diagnostic.goto_prev)
+  nmap(']d', vim.diagnostic.goto_next)
+  nmap('<leader>ee', vim.diagnostic.open_float)
+  nmap('<leader>q', vim.diagnostic.setloclist)
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -374,26 +365,6 @@ require('neodev').setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Setup mason so it can manage external tooling
-require('mason').setup()
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
 
 -- Turn on lsp status information
 require('fidget').setup()
