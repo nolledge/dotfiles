@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
@@ -55,6 +57,7 @@ vim.cmd [[colorscheme dracula]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+vim.opt_global.shortmess:remove("F")
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
@@ -124,7 +127,23 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+  ["ui-select"] = {
+    require("telescope.themes").get_dropdown({})
+  }
+},
 }
+
+require('lspsaga').setup {
+  enable = true,
+  lightbulb = {
+    enable = false,
+  }
+}
+
+require("telescope").load_extension("ui-select")
+
+require('telescope').load_extension('scaladex')
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -151,6 +170,8 @@ vim.keymap.set("n", "<leader>mc", require("telescope").extensions.metals.command
 
 vim.keymap.set("n", "<leader>o", require("telescope.builtin").lsp_document_symbols)
 vim.keymap.set("n", "<leader>go",require("telescope.builtin").lsp_dynamic_workspace_symbols)
+vim.keymap.set('n', '<leader>si', require("telescope").extensions.scaladex.scaladex.search)
+vim.keymap.set( "n", "<leader>tv", '<cmd>Lspsaga outline<CR>', { desc = '[T]ree [V]iew' })
 vim.keymap.set( "n", "<leader>vc", [[<cmd>lua require("telescope.builtin").find_files({cwd = "~/workspace/dotfiles/nvim/.config/nvim", layout_strategy="vertical"})<CR>]])
 vim.keymap.set( "n", "<leader>fm", '<cmd>!scalafmt %<cr>')
 
@@ -235,12 +256,13 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>rn', '<cmd>Lspsaga rename<CR>', '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('pd', '<cmd>Lspsaga peek_definition<CR>', '[P]eek [D]efinition')
+  nmap('gr', function() require('telescope.builtin').lsp_references{ path_display = { "smart" } } end, '[G]oto [R]eferences')
+  nmap('gi', function() require('telescope.builtin').lsp_implementations({initial_mode='normal'}) end, '[G]oto [I]mplementation')
   nmap('gtD', vim.lsp.buf.type_definition, '[G]o [T]ype [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
@@ -266,7 +288,9 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
 end
+
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -288,6 +312,49 @@ local servers = {
   },
 }
 
+--- nvim-cmp setup
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
+
   --================================
   -- Metals specific setup
   --================================
@@ -303,10 +370,12 @@ local servers = {
     showImplicitArguments = true,
     showImplicitConversionsAndClasses = true,
     showInferredType = true,
-    serverVersion = "latest.snapshot",
   }
 
   metals_config.init_options.statusBarProvider = "on"
+
+  -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+  metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   metals_config.on_attach = function(client, bufnr)
     on_attach(client, bufnr)
@@ -359,58 +428,5 @@ local servers = {
     group = nvim_metals_group,
   })
 
--- Setup neovim lua configuration
-require('neodev').setup()
---
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
 -- Turn on lsp status information
 require('fidget').setup()
-
--- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et

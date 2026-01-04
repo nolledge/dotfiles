@@ -29,6 +29,7 @@ alias loopback='pactl load-module module-loopback latency_msec=1'
 alias c='clear'
 alias h='cd ~'
 alias w='cd ~/workspace'
+alias sb='cd ~/workspace/commercetools/sphere-backend'
 alias dl='cd ~/Downloads'
 alias nas='cd ~/archive'
 
@@ -40,7 +41,7 @@ alias dls='docker container ls'
 
 # My functions
 replaceall() {
-    rg -l "$1" | xargs sed -i "s/$1/$2/g"
+    rg -l "$1" | xargs sed -i '' "s/$1/$2/g"
 }
 
 alias vimgo='vim -u ~/.vimrc.go'
@@ -60,7 +61,7 @@ alias v='nvim'
 alias vf='nvim (fzf)'
 alias eng='trans de:en'
 alias 1p='pass -c Business/OnePass'
-alias ll='exa -al --color=always --group-directories-first'
+alias ll='gls -al --color=always --group-directories-first'
 alias ts='date +"%s"'
 alias dc='docker-compose'
 alias nbl='cat /home/christof/nb_templates/literature_note.md | nb add --edit'
@@ -74,5 +75,13 @@ set_ns(){
 }
 camelcase() {
     perl -pe 's#(_|^)(.)#\u$2#g'
+}
+
+login_vault() {
+    VAULT_ADDR=$VAULT_PROD vault login -method=oidc -path=oidc/gsuite
+}
+
+login_vault_stage() {
+    VAULT_ADDR=$VAULT_STAGE vault login -method=oidc -path=oidc/gsuite
 }
 

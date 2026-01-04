@@ -1,8 +1,9 @@
 return   {
     "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
     -- tag = "*",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "luarocks.nvim" },
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
     config = function()
       require("neorg").setup {
         load = {
